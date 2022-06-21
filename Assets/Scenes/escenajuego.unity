@@ -651,6 +651,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delay: 1
   minDelay: 0.2
+  enemySprites:
+  - {fileID: 3888678161577675459, guid: 7607311022bbb62479af6fed333e9587, type: 3}
+  - {fileID: 2919968945315812431, guid: 7607311022bbb62479af6fed333e9587, type: 3}
+  - {fileID: -7207053174970380526, guid: 7607311022bbb62479af6fed333e9587, type: 3}
+  - {fileID: -7587063025298404445, guid: 7607311022bbb62479af6fed333e9587, type: 3}
 --- !u!114 &427718866
 MonoBehaviour:
   m_ObjectHideFlags: 0
