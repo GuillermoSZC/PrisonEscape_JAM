@@ -6,9 +6,13 @@ public class MovimientoEnemigo : MonoBehaviour
 {
 	private float speed;
 	private int randomMovement;
+
 	private float zigzagCont = 0.0f;
-	private bool zigzagFlipFlop = false;
 	private float bulletPrisoner = 0.0f;
+	private float thirdMovement = 0.0f;
+
+	private bool zigzagFlipFlop = false;
+	private bool thirdFlipFlop = false;
 
 	// Start is called before the first frame update
 	void Start()
@@ -28,12 +32,13 @@ public class MovimientoEnemigo : MonoBehaviour
 			gameObject.SetActive(false);
 			bulletPrisoner = 0.0f;
 			zigzagCont = 0.0f;
+			thirdMovement = 0.0f;
 		}
 	}
 
 	private void EnemyMovement()
 	{
-		if (randomMovement == 0)
+		if (randomMovement == 1)
 		{
 			if (zigzagCont == 0.0f)
 			{
@@ -57,8 +62,32 @@ public class MovimientoEnemigo : MonoBehaviour
 		}
 		else if (randomMovement == 1)
 		{
-			bulletPrisoner = bulletPrisoner - 0.01f * Time.deltaTime;
+			bulletPrisoner = bulletPrisoner - 0.002f * Time.deltaTime;
 			transform.position = new Vector3(transform.position.x + bulletPrisoner, transform.position.y, transform.position.z);
+		}
+		else if(randomMovement == 0)
+		{
+			if(thirdMovement == 0.0f)
+			{
+				thirdFlipFlop = true;
+			}
+			else if(thirdMovement == 1700.0f)
+			{
+				thirdFlipFlop = false;
+				thirdMovement = 0.0f;
+			}
+
+			if(thirdFlipFlop && thirdMovement <= 200.0f)
+			{
+				thirdMovement++;
+				transform.position = new Vector3(transform.position.x - Time.deltaTime * speed, transform.position.y + Time.deltaTime * speed, transform.position.z);
+			}
+			else if(thirdFlipFlop)
+			{
+				thirdMovement++;
+				transform.position = new Vector3(transform.position.x - Time.deltaTime * speed, transform.position.y, transform.position.z);
+
+			}
 		}
 		else
 		{
