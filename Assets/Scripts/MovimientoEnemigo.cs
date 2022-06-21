@@ -6,8 +6,10 @@ public class MovimientoEnemigo : MonoBehaviour
 {
 	private float speed;
 	private int randomMovement;
-	private float contador = 0.0f;
-	private bool flipFlop = false;
+	private float borrachoCont = 0.0f;
+	private bool borrachoFlipFlop = false;
+	private float zigZagCont = 0.0f;
+	private bool zigZagFlipFlop = false;
 
 	// Start is called before the first frame update
 	void Start()
@@ -20,7 +22,7 @@ public class MovimientoEnemigo : MonoBehaviour
 	void Update()
 	{
 		EnemyMovement();
-		
+
 
 		if (transform.position.x <= -10.0)
 		{
@@ -30,27 +32,50 @@ public class MovimientoEnemigo : MonoBehaviour
 
 	private void EnemyMovement()
 	{
-		if(randomMovement == 0)
+		if (randomMovement == 0)
 		{
-			if (contador == 0.0f)
+			if (borrachoCont == 0.0f)
 			{
-				flipFlop = true;
+				borrachoFlipFlop = true;
 			}
-			else if (contador == 300.0f)
+			else if (borrachoCont == 300.0f)
 			{
-				flipFlop = false;
+				borrachoFlipFlop = false;
 			}
 
-			if (flipFlop)
+			if (borrachoFlipFlop)
 			{
-				contador++;
+				borrachoCont++;
 				transform.position = new Vector3(transform.position.x - Time.deltaTime * speed, transform.position.y + Time.deltaTime * speed, transform.position.z);
 			}
 			else
 			{
-				contador--;
+				borrachoCont--;
 				transform.position = new Vector3(transform.position.x - Time.deltaTime * speed, transform.position.y - Time.deltaTime * speed, transform.position.z);
 			}
+		}
+		else if (randomMovement == 1)
+		{
+			if (zigZagCont == 0.0f)
+			{
+				zigZagFlipFlop = true;
+			}
+			else if (zigZagCont == 50.0f)
+			{
+				zigZagCont = 0.0f;
+				zigZagFlipFlop = false;
+			}
+
+			if (borrachoFlipFlop)
+			{
+				zigZagCont++;
+				transform.position = new Vector3(transform.position.x - Time.deltaTime * speed, transform.position.y, transform.position.z);
+			}
+			else
+			{
+				transform.position = new Vector3(transform.position.x + 3.0f, transform.position.y, transform.position.z);
+			}
+
 		}
 		else
 		{
