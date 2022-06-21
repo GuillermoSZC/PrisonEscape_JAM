@@ -26,7 +26,7 @@ public class MovimientoEnemigo : MonoBehaviour
 
 		if (transform.position.x <= -10.0)
 		{
-			Destroy(gameObject);
+			gameObject.SetActive(false);
 		}
 	}
 
