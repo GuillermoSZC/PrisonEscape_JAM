@@ -1,6 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+
+public enum EnemyType
+{
+	NONE = -1,
+	OLDMAN,
+	NORMALMAN,
+	SKINHEAD,
+	SCARFACE
+}
 
 public class EnemyGenerator : MonoBehaviour
 {
@@ -8,6 +18,7 @@ public class EnemyGenerator : MonoBehaviour
     public float delay = 3f; // 1 enemy per initialDelay seconds
     [Tooltip("Minimum delay to spawn enemies")]
     public float minDelay = 0.5f;
+	public Sprite[] enemySprites;
 
     private float timeToSpawnEnemy = 0f;
 
@@ -29,7 +40,7 @@ public class EnemyGenerator : MonoBehaviour
                     CreateEnemy(enemy);
                     if (delay > minDelay)
 					{
-                        delay -= Time.deltaTime * 0.001f; // To make 
+                        delay -= 0.1f;
 					}
                     timeToSpawnEnemy = delay;
 				}
@@ -44,8 +55,15 @@ public class EnemyGenerator : MonoBehaviour
         float x = Random.Range(9f, 12f);
         float y = Random.Range(-2f, 1f);
         float z = -1f;
-
         _enemy.transform.position = new Vector3(x, y, z);
+
+        if (enemySprites.Length > 0)
+		{
+            int typeOfEnemy = Random.Range(0, enemySprites.Length);
+            _enemy.GetComponent<MovimientoEnemigo>().enemyType = (EnemyType)typeOfEnemy;
+            _enemy.GetComponentInChildren<SpriteRenderer>().sprite = enemySprites[typeOfEnemy];
+		}
+
 		_enemy.SetActive(true);
 		
         return true;

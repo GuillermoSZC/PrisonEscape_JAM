@@ -13,12 +13,13 @@ public class MovimientoEnemigo : MonoBehaviour
 
 	private bool zigzagFlipFlop = false;
 	private bool thirdFlipFlop = false;
+	
+	public EnemyType enemyType = EnemyType.NONE;
 
 	// Start is called before the first frame update
 	void Start()
 	{
 		speed = Random.Range(2.0f, 9.0f);
-		randomMovement = Random.Range(0, 3);
 	}
 
 	// Update is called once per frame
@@ -38,7 +39,7 @@ public class MovimientoEnemigo : MonoBehaviour
 
 	private void EnemyMovement()
 	{
-		if (randomMovement == 1)
+		if(enemyType == EnemyType.SCARFACE)
 		{
 			if (zigzagCont == 0.0f)
 			{
@@ -60,12 +61,12 @@ public class MovimientoEnemigo : MonoBehaviour
 				transform.position = new Vector3(transform.position.x - Time.deltaTime * speed, transform.position.y - Time.deltaTime * speed, transform.position.z);
 			}
 		}
-		else if (randomMovement == 1)
+		else if (enemyType == EnemyType.SKINHEAD)
 		{
 			bulletPrisoner = bulletPrisoner - 0.002f * Time.deltaTime;
 			transform.position = new Vector3(transform.position.x + bulletPrisoner, transform.position.y, transform.position.z);
 		}
-		else if(randomMovement == 0)
+		else if (enemyType == EnemyType.NORMALMAN)
 		{
 			if(thirdMovement == 0.0f)
 			{
@@ -89,7 +90,7 @@ public class MovimientoEnemigo : MonoBehaviour
 
 			}
 		}
-		else
+		else if (enemyType == EnemyType.OLDMAN)
 		{
 			transform.position = new Vector3(transform.position.x - Time.deltaTime * speed, transform.position.y, transform.position.z);
 		}
