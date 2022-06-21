@@ -50,19 +50,6 @@ public class EnemyGenerator : MonoBehaviour
 
     bool CreateEnemy(GameObject _enemy)
 	{
-        Random.InitState((int)(Time.timeSinceLevelLoad * 1000f));
-        // TODO: I don't like this values 'a pincho'
-        float x = Random.Range(9f, 12f);
-        float y = Random.Range(-2f, 1f);
-        float z = -1f;
-        _enemy.transform.position = new Vector3(x, y, z);
-
-        if (enemySprites.Length > 0)
-		{
-            int typeOfEnemy = Random.Range(0, enemySprites.Length);
-            _enemy.GetComponent<MovimientoEnemigo>().enemyType = (EnemyType)typeOfEnemy;
-            _enemy.GetComponentInChildren<SpriteRenderer>().sprite = enemySprites[typeOfEnemy];
-		}
 
 		_enemy.SetActive(true);
 		

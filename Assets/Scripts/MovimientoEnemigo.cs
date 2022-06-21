@@ -11,6 +11,10 @@ public class MovimientoEnemigo : MonoBehaviour
 	private float bulletPrisoner = 0.0f;
 	private float thirdMovement = 0.0f;
 
+
+	private float initaccel = 0.002f;
+	private float accel = 0.002f;
+
 	private bool zigzagFlipFlop = false;
 	private bool thirdFlipFlop = false;
 	
@@ -22,8 +26,13 @@ public class MovimientoEnemigo : MonoBehaviour
 		speed = Random.Range(2.0f, 9.0f);
 	}
 
-	// Update is called once per frame
-	void Update()
+    private void OnEnable()
+    {
+		accel = initaccel;
+    }
+
+    // Update is called once per frame
+    void Update()
 	{
 		EnemyMovement();
 
@@ -36,6 +45,13 @@ public class MovimientoEnemigo : MonoBehaviour
 			thirdMovement = 0.0f;
 		}
 	}
+
+
+	public void StopMoving()
+    {
+		accel = 0.0f;
+		speed = 0.0f;
+    }
 
 	private void EnemyMovement()
 	{
@@ -63,7 +79,7 @@ public class MovimientoEnemigo : MonoBehaviour
 		}
 		else if (enemyType == EnemyType.SKINHEAD)
 		{
-			bulletPrisoner = bulletPrisoner - 0.002f * Time.deltaTime;
+			bulletPrisoner = bulletPrisoner - accel * Time.deltaTime;
 			transform.position = new Vector3(transform.position.x + bulletPrisoner, transform.position.y, transform.position.z);
 		}
 		else if (enemyType == EnemyType.NORMALMAN)
