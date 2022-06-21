@@ -17,5 +17,10 @@ public class MovimientoEnemigo : MonoBehaviour
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+
+        if(transform.position == target.transform.position)
+		{
+            Destroy(gameObject);
+		}
     }
 }
