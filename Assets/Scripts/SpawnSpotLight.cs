@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputPlayer : MonoBehaviour
+public class SpawnSpotLight : MonoBehaviour
 {
 
-    public float cadenciafoco;
+    public float cadenciafoco = 5;
     private float cadencia;
     public GameObject lightSpotlogic;
     private GameObject light;
