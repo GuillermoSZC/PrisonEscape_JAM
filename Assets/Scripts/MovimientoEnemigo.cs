@@ -4,29 +4,59 @@ using UnityEngine;
 
 public class MovimientoEnemigo : MonoBehaviour
 {
-    public float limitRandomSpeed;
+	private float speed;
+	private int randomMovement;
+	private float contador = 0.0f;
+	private bool flipFlop = false;
 
+	// Start is called before the first frame update
+	void Start()
+	{
+		speed = Random.Range(2.0f, 9.0f);
+		randomMovement = Random.Range(0, 3);
+	}
 
-    private float speed;
+	// Update is called once per frame
+	void Update()
+	{
+		EnemyMovement();
+		
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        speed = Random.Range(2.0f, limitRandomSpeed);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // Move to target
-        // transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
-
-        transform.position = new Vector3(transform.position.x - Time.deltaTime * speed, transform.position.y, transform.position.z);
-
-
-        if(transform.position.x <= -8.3)
+		if (transform.position.x <= -10.0)
 		{
-			Destroy(gameObject);
+			gameObject.SetActive(false);
 		}
 	}
+
+	private void EnemyMovement()
+	{
+		if(randomMovement == 0)
+		{
+			if (contador == 0.0f)
+			{
+				flipFlop = true;
+			}
+			else if (contador == 300.0f)
+			{
+				flipFlop = false;
+			}
+
+			if (flipFlop)
+			{
+				contador++;
+				transform.position = new Vector3(transform.position.x - Time.deltaTime * speed, transform.position.y + Time.deltaTime * speed, transform.position.z);
+			}
+			else
+			{
+				contador--;
+				transform.position = new Vector3(transform.position.x - Time.deltaTime * speed, transform.position.y - Time.deltaTime * speed, transform.position.z);
+			}
+		}
+		else
+		{
+			transform.position = new Vector3(transform.position.x - Time.deltaTime * speed, transform.position.y, transform.position.z);
+		}
+	}
+
 }
+

@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class EnemyGenerator : MonoBehaviour
 {
-    public float Delay = 1f;
+    [Tooltip("Initial delay between the spawns of the enemies")]
+    public float delay = 3f; // 1 enemy per initialDelay seconds
+    [Tooltip("Minimum delay to spawn enemies")]
+    public float minDelay = 0.5f;
+
     private float timeToSpawnEnemy = 0f;
 
     void Start()
     {
-        timeToSpawnEnemy = Delay;
+        timeToSpawnEnemy = delay;
     }
 
     void Update()
@@ -23,7 +27,11 @@ public class EnemyGenerator : MonoBehaviour
                 if (enemy != null)
 				{
                     CreateEnemy(enemy);
-                    timeToSpawnEnemy = Delay;
+                    if (delay > minDelay)
+					{
+                        delay -= Time.deltaTime * 0.001f; // To make 
+					}
+                    timeToSpawnEnemy = delay;
 				}
 			}
 		}
