@@ -342,6 +342,8 @@ GameObject:
   - component: {fileID: 219760027}
   - component: {fileID: 219760026}
   - component: {fileID: 219760028}
+  - component: {fileID: 219760030}
+  - component: {fileID: 219760029}
   m_Layer: 0
   m_Name: mapa
   m_TagString: Untagged
@@ -440,6 +442,35 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &219760029
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219760025}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 19.199999, y: 10.8, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &219760030
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219760025}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &226659922
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,7 +624,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: 0
 --- !u!222 &318681233
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -628,6 +659,8 @@ GameObject:
   - component: {fileID: 427718867}
   - component: {fileID: 427718866}
   - component: {fileID: 427718865}
+  - component: {fileID: 427718868}
+  - component: {fileID: 427718869}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -647,8 +680,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf5add64b1f0bb4a8904bb8453f1358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 3
-  minDelay: 0.5
+  delay: 1
+  minDelay: 0.2
 --- !u!114 &427718866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -678,6 +711,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &427718868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427718864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4661cceba4c47e4e9ffb81dad008b3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cadenciafoco: 0.2
+  prefab_spotLight: {fileID: 7560972872122693236, guid: b0c071b0d00bda648b39b5bbc5f7cfe4, type: 3}
+--- !u!114 &427718869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427718864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 725c95269d5721942878850454835b39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerhealth: 5
+  scoreText: {fileID: 318681232}
 --- !u!1 &470720154
 GameObject:
   m_ObjectHideFlags: 0

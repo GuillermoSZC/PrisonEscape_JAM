@@ -5,13 +5,13 @@ using UnityEngine;
 public class SpawnSpotLight : MonoBehaviour
 {
 
-    public float cadenciafoco = 5;
+    public float cadenciafoco = 0.2f;
     private float cadencia;
     public GameObject prefab_spotLight;
     private GameObject instance_spotLight;
     private returntoinit returnComponent;
 
-    public Vector3 initpoint;
+    Vector3 initpoint = new Vector3(-90,-90,-90);
 
 
     private void Start()
@@ -29,9 +29,9 @@ public class SpawnSpotLight : MonoBehaviour
 
 
 
-        if (/*canSpawn &&*/ Input.GetButton("Fire1") && cadencia <= 0)
+        if (Input.GetButton("Fire1") && cadencia <= 0)
         {
-            /*   canSpawn = false;*/
+           
             cadencia = cadenciafoco;
             Vector3 screenPos = Input.mousePosition;
             Ray ray = Camera.main.ScreenPointToRay(screenPos);
@@ -47,7 +47,7 @@ public class SpawnSpotLight : MonoBehaviour
         }
         else
         {
-            cadencia -= Time.deltaTime;
+            cadencia -= Time.deltaTime;            
         }
     }
 }

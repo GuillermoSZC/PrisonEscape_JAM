@@ -31,7 +31,7 @@ public class returntoinit : MonoBehaviour
 
         if(setted==true)
         {
-            if (delta >= 0.2f)
+            if (delta >= 0.05f)
             {
                 setted = false;
                 gameObject.transform.position = initPos;
