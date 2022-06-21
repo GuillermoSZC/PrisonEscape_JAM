@@ -14,6 +14,7 @@ public class EnemyLife : MonoBehaviour
         if (Health <= 0)
         {
             //muerto
+            Destroy(gameObject);
         }
     }
 
