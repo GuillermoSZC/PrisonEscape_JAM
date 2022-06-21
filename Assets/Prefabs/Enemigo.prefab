@@ -4977,6 +4977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 1
+  bang: {fileID: 5944414027957276836, guid: 7607311022bbb62479af6fed333e9587, type: 3}
 --- !u!95 &7526929528031393250
 Animator:
   serializedVersion: 3
