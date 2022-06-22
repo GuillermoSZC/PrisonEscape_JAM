@@ -481,6 +481,7 @@ MonoBehaviour:
   transitionBegin: {fileID: 1510964083}
   transitionEnd: {fileID: 382723273}
   tutoImage: {fileID: 1261593241}
+  record: {fileID: 1567385823}
 --- !u!4 &394330968
 Transform:
   m_ObjectHideFlags: 0
