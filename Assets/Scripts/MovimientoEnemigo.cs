@@ -40,9 +40,9 @@ public class MovimientoEnemigo : MonoBehaviour
 		EnemyMovement();
 	}
 
-	public void DeactiveBulletEnemy()
+	public void DeactiveBulletEnemy(bool _validate)
 	{
-		deactiveBulletEnemy = true;
+		deactiveBulletEnemy = _validate;
 	}
 
 	public void ResetEnemy()

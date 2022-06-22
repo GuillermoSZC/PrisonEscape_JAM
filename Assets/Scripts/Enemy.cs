@@ -101,7 +101,15 @@ public class Enemy : MonoBehaviour
     {
 		if (managerComponent.GetHealth() <= 0.0f)
 		{
-			MovEnemyComp.DeactiveBulletEnemy();
+			MovEnemyComp.DeactiveBulletEnemy(true);
+		}
+        else if(managerComponent.paused && managerComponent.GetHealth() > 1.0f)
+		{
+            MovEnemyComp.DeactiveBulletEnemy(true);
+		}
+        else if(!managerComponent.paused && managerComponent.GetHealth() > 1.0f)
+		{
+			MovEnemyComp.DeactiveBulletEnemy(false);
 		}
 
 		if (hitted)

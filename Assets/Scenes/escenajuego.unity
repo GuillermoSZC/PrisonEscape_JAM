@@ -787,7 +787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObjects: []
   objectToPool: {fileID: 9083133398137834166, guid: 68532b6affc137b47af8150ca38bdef9, type: 3}
-  amountToPool: 15
+  amountToPool: 14
 --- !u!4 &427718867
 Transform:
   m_ObjectHideFlags: 0
@@ -829,6 +829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerhealth: 5
+  paused: 0
   PauseMenu: {fileID: 755041752}
   GameOverMenu: {fileID: 1594413953}
   scoreText: {fileID: 318681232}

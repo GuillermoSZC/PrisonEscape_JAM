@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     private int health;
 
     private int score = 0;
-    private bool paused = false;
+    public bool paused = false;
 
     public GameObject PauseMenu;
     public GameObject GameOverMenu;
@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
                 liveBullets[0].enabled = false;
                 Time.timeScale = 0;
                 GameOverMenu.SetActive(true);
+                paused = false;
                 break;
             case 1:
                 liveBullets[1].enabled = false;
@@ -81,22 +82,24 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if(health > 0)
+		{
+			if (Input.GetKeyDown(KeyCode.Space))
 
-        {
-            if (!paused)
-            {
-                PauseMenu.SetActive(true);
-                Time.timeScale = 0;
-                paused = true;
-            }
-            else if (paused)
-            {
-                PauseMenu.SetActive(false);
-                Time.timeScale = 1;
-                paused=false;
-            }
-        }
-
+			{
+				if (!paused)
+				{
+					PauseMenu.SetActive(true);
+					Time.timeScale = 0;
+					paused = true;
+				}
+				else if (paused)
+				{
+					PauseMenu.SetActive(false);
+					Time.timeScale = 1;
+					paused = false;
+				}
+			}
+		}
     }
 }
