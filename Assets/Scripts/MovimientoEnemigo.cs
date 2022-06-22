@@ -29,7 +29,7 @@ public class MovimientoEnemigo : MonoBehaviour
 
     private void OnEnable()
     {
-		speed = Random.Range(2.0f, 4.0f);
+		speed = Random.Range(2.0f, 3.0f);
 		accel = initaccel;
 		deactiveBulletEnemy = false;
     }
