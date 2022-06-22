@@ -59,6 +59,10 @@ public class GameManager : MonoBehaviour
         transitionEnd.SetActive(true);
     }
 
+    public float GetHealth()
+	{
+        return health;
+	}
 
     void Start()
     {

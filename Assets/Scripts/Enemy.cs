@@ -97,8 +97,12 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+		if (managerComponent.GetHealth() <= 0.0f)
+		{
+			MovEnemyComp.DeactiveBulletEnemy();
+		}
 
-        if (hitted)
+		if (hitted)
         {
             timehitted += Time.deltaTime;
             if (timehitted >= 0.3f)
