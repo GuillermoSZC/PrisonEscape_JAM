@@ -17,7 +17,8 @@ public class Enemy : MonoBehaviour
     float timehitted = 0;
     private GameManager managerComponent;
 
-
+    public AudioClip[] dieSound;
+    private AudioSource audioComponent;
 
     MovimientoEnemigo MovEnemyComp;
     SpriteRenderer SpriteComponent;
@@ -41,6 +42,7 @@ public class Enemy : MonoBehaviour
             particleComponent.Stop();
             animatorComponent.enabled = false;
             managerComponent.addScore(1);
+            audioComponent.Play();
             gamehealth = Health;
         }
     }
@@ -73,6 +75,7 @@ public class Enemy : MonoBehaviour
             int typeOfEnemy = Random.Range(0, enemySprites.Length);
             MovEnemyComp.enemyType = (EnemyType)typeOfEnemy;
             SpriteComponent.sprite = enemySprites[typeOfEnemy];
+            audioComponent.clip = dieSound[typeOfEnemy];
         }
         hitted = false;
         particleComponent.Play();
@@ -86,7 +89,7 @@ public class Enemy : MonoBehaviour
         SpriteComponent = gameObject.GetComponentInChildren<SpriteRenderer>();
         animatorComponent = gameObject.GetComponent<Animator>();
         particleComponent = gameObject.GetComponentInChildren<ParticleSystem>();
-
+        audioComponent = gameObject.GetComponent<AudioSource>();
     }
 
 

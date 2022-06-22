@@ -18,7 +18,6 @@ public class EnemyGenerator : MonoBehaviour
     public float delay = 3f; // 1 enemy per initialDelay seconds
     [Tooltip("Minimum delay to spawn enemies")]
     public float minDelay = 0.5f;
-	public Sprite[] enemySprites;
 
     private float timeToSpawnEnemy = 0f;
 
