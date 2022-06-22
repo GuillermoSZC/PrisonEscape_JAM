@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public GameObject transitionBegin;
     public GameObject transitionEnd;
     public GameObject alarmobject;
+    private AudioSource buttonClic;
 
 
     public bool GetPaused()
@@ -79,6 +80,7 @@ public class GameManager : MonoBehaviour
         PauseMenu.SetActive(false);
         GameOverMenu.SetActive(false);
         transitionBegin.SetActive(true);
+        buttonClic = gameObject.GetComponent<AudioSource>();
         transitionEnd.SetActive(false);
         health = 4;
 
@@ -99,12 +101,14 @@ public class GameManager : MonoBehaviour
 				if (!paused)
 				{
 					PauseMenu.SetActive(true);
-					Time.timeScale = 0;
+                    buttonClic.PlayScheduled(0.4);
+                    Time.timeScale = 0;
 					paused = true;
 				}
 				else if (paused)
 				{
 					PauseMenu.SetActive(false);
+                    buttonClic.PlayScheduled(0.4);
 					Time.timeScale = 1;
 					paused = false;
 				}
