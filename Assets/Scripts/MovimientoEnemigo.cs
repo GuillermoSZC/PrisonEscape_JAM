@@ -23,34 +23,33 @@ public class MovimientoEnemigo : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		speed = Random.Range(2.0f, 9.0f);
+		
 	}
 
     private void OnEnable()
     {
+		speed = Random.Range(2.0f, 4.0f);
 		accel = initaccel;
     }
+
+	
+
 
     // Update is called once per frame
     void Update()
 	{
 		EnemyMovement();
-
-
-		if (transform.position.x <= -10.0)
-		{
-			gameObject.SetActive(false);
-			bulletPrisoner = 0.0f;
-			zigzagCont = 0.0f;
-			thirdMovement = 0.0f;
-		}
 	}
 
 
-	public void StopMoving()
+	public void ResetEnemy()
     {
+		bulletPrisoner = 0.0f;
 		accel = 0.0f;
 		speed = 0.0f;
+        bulletPrisoner = 0.0f;
+        zigzagCont = 0.0f;
+        thirdMovement = 0.0f;
     }
 
 	private void EnemyMovement()

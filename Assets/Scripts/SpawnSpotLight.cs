@@ -26,9 +26,6 @@ public class SpawnSpotLight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-
         if (Input.GetButton("Fire1") && cadencia <= 0)
         {
            
@@ -40,10 +37,8 @@ public class SpawnSpotLight : MonoBehaviour
                 instance_spotLight.transform.position = hitData.point;
                 returnComponent.Shoot();
             }
-
             //light.transform.position = initpoint;
             /* Instantiate(lightSpotlogic,spawnpoint,lightSpotlogic.transform.rotation);*/
-
         }
         else
         {
