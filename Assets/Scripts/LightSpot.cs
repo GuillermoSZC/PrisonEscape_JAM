@@ -23,6 +23,7 @@ public class LightSpot : MonoBehaviour
         if (comp)
         {
             comp.OnSpotLight(1);
+            GetComponentInChildren<ParticleSystem>().Play();
         }
     }
 
