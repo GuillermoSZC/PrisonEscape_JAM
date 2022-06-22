@@ -45,9 +45,8 @@ public class GameManager : MonoBehaviour
         {
             case 0:
                 liveBullets[0].enabled = false;
-                Time.timeScale = 0;
-                GameOverMenu.SetActive(true);
-                paused = false;
+                GameOver();
+               
                 break;
             case 1:
                 liveBullets[1].enabled = false;
@@ -115,4 +114,20 @@ public class GameManager : MonoBehaviour
 			}
 		}
     }
+
+    void GameOver()
+    {
+        float maxscore = PlayerPrefs.GetFloat("score", 0.0f);
+        if(score>maxscore)
+        {
+        PlayerPrefs.SetFloat("score", score);
+        }
+
+        Time.timeScale = 0;
+        GameOverMenu.SetActive(true);
+        paused = false;
+    }
 }
+
+
+
