@@ -20,6 +20,13 @@ public class GameManager : MonoBehaviour
     public GameObject transitionBegin;
     public GameObject transitionEnd;
 
+
+    public bool GetPaused()
+    {
+        return paused;
+    }
+
+
     public void addScore(int _score)
     {
         score += _score;

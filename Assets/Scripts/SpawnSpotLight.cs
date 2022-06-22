@@ -10,6 +10,8 @@ public class SpawnSpotLight : MonoBehaviour
     public GameObject prefab_spotLight;
     private GameObject instance_spotLight;
     private returntoinit returnComponent;
+    private AudioSource audioSourceComponent;
+    private GameManager managerComponent;
 
     Vector3 initpoint = new Vector3(-90,-90,-90);
 
@@ -20,13 +22,15 @@ public class SpawnSpotLight : MonoBehaviour
         instance_spotLight = Instantiate(prefab_spotLight, initpoint, prefab_spotLight.transform.rotation);
         returnComponent = instance_spotLight.GetComponent<returntoinit>();
         returnComponent.SetInitPos(initpoint);
+        audioSourceComponent = GetComponent<AudioSource>();
+        managerComponent = GetComponent<GameManager>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Fire1") && cadencia <= 0)
+        if (!managerComponent.GetPaused() && Input.GetButton("Fire1") && cadencia <= 0)
         {
            
             cadencia = cadenciafoco;
@@ -36,6 +40,7 @@ public class SpawnSpotLight : MonoBehaviour
             {
                 instance_spotLight.transform.position = hitData.point;
                 returnComponent.Shoot();
+                audioSourceComponent.Play();
             }
             //light.transform.position = initpoint;
             /* Instantiate(lightSpotlogic,spawnpoint,lightSpotlogic.transform.rotation);*/
