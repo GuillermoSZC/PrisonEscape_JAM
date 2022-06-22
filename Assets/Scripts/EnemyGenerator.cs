@@ -15,17 +15,22 @@ public enum EnemyType
 public class EnemyGenerator : MonoBehaviour
 {
     [Tooltip("Initial delay between the spawns of the enemies")]
-    public float delay = 3f; // 1 enemy per initialDelay seconds
+    public float initialDelay = 2f; // 1 enemy per initialDelay seconds
     [Tooltip("Minimum delay to spawn enemies")]
     public float minDelay = 0.5f;
 
     private float timeToSpawnEnemy = 0f;
+    private GameManager managerComponent;
+    public float delay = 0f;
+    public int relativeScore = 0;
 
     public AudioSource altavozenemy;
 
     void Start()
     {
-        timeToSpawnEnemy = delay;
+        delay = initialDelay;
+        timeToSpawnEnemy = initialDelay;
+        managerComponent = FindObjectOfType<GameManager>();
     }
 
     void Update()
@@ -39,9 +44,10 @@ public class EnemyGenerator : MonoBehaviour
                 if (enemy != null)
 				{
                     CreateEnemy(enemy, altavozenemy);
+                    enemy.GetComponent<MovimientoEnemigo>().speedMultiplier = Mathf.Min(2f, enemy.GetComponent<MovimientoEnemigo>().speedMultiplier + 0.1f);
                     if (delay > minDelay)
 					{
-                        delay -= 0.1f;
+                        delay =  Mathf.Max(minDelay, initialDelay - managerComponent.GetScore() * 0.1f); // Substract 0.1 per enemy killed
 					}
                     timeToSpawnEnemy = delay;
 				}

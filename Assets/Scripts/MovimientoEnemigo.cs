@@ -12,8 +12,8 @@ public class MovimientoEnemigo : MonoBehaviour
 	private float thirdMovement = 0.0f;
 
 
-	private float initaccel = 0.002f;
-	private float accel = 0.002f;
+	private float initaccel = 0.01f;
+	private float accel = 0.01f;
 
 	private bool zigzagFlipFlop = false;
 	private bool thirdFlipFlop = false;
@@ -21,16 +21,18 @@ public class MovimientoEnemigo : MonoBehaviour
 	
 	public EnemyType enemyType = EnemyType.NONE;
 
+	public float speedMultiplier = 1f;
+
 	// Start is called before the first frame update
 	void Start()
 	{
-		
+
 	}
 
     private void OnEnable()
     {
-		speed = Random.Range(2.0f, 5.0f);
-		accel = initaccel;
+		speed = Random.Range(2.0f, 5.0f) * speedMultiplier;
+		accel = initaccel * speedMultiplier;
 		deactiveBulletEnemy = false;
     }
 

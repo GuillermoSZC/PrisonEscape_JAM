@@ -33,10 +33,14 @@ public class GameManager : MonoBehaviour
     {
         score += _score;
         scoreText.text = score.ToString();
-
     }
 
-    public void damage(int _damage)
+	public int GetScore()
+	{
+		return score;
+	}
+
+	public void damage(int _damage)
     {
 
         health -= _damage;
@@ -72,7 +76,7 @@ public class GameManager : MonoBehaviour
         return health;
 	}
 
-    void Start()
+	void Start()
     {
         Time.timeScale = 1;
         addScore(0);
