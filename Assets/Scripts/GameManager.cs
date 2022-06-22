@@ -10,12 +10,16 @@ public class GameManager : MonoBehaviour
     public int playerhealth;
     private int health;
 
-    private int score=0;
+    private int score = 0;
 
-
+    public Image PauseMenu;
+    public Image GameOverMenu;
     public Text scoreText;
+    public Image[] liveBullets;
+    public GameObject transitionBegin;
+    public GameObject transitionEnd;
 
-   public void addScore(int _score)
+    public void addScore(int _score)
     {
         score += _score;
         scoreText.text = score.ToString();
@@ -25,19 +29,55 @@ public class GameManager : MonoBehaviour
     public void damage(int _damage)
     {
         health -= _damage;
+
+        switch (health)
+        {
+            case 0:
+                Time.timeScale = 0;
+                GameOverMenu.enabled = true;
+                break;
+            case 1:
+                liveBullets[0].enabled = false;
+                break;
+            case 2:
+                liveBullets[1].enabled = false;
+                break;
+            case 3:
+                liveBullets[2].enabled = false;
+                break;
+            case 4:
+                liveBullets[3].enabled = false;
+                break;
+            default:
+                break;
+        }
     }
 
-
+    public void botonVolver()
+    {
+        transitionEnd.SetActive(true);
+    }
 
 
     void Start()
     {
-        addScore(0); 
+        Time.timeScale = 1;
+        addScore(0);
+        PauseMenu.enabled=false;
+        GameOverMenu.enabled = false;
+        transitionBegin.SetActive(true);
+        //transitionEnd.SetActive(false);
+        health = 5;
+
+        for (int i = 0; i < liveBullets.Length - 1; ++i)
+        {
+            liveBullets[i].enabled = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
