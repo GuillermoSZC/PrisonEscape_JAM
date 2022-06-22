@@ -101,7 +101,15 @@ public class Enemy : MonoBehaviour
     {
 		if (managerComponent.GetHealth() <= 0.0f)
 		{
-			MovEnemyComp.DeactiveBulletEnemy();
+			MovEnemyComp.DeactiveBulletEnemy(true);
+		}
+        else if(managerComponent.paused && managerComponent.GetHealth() > 1.0f)
+		{
+            MovEnemyComp.DeactiveBulletEnemy(true);
+		}
+        else if(!managerComponent.paused && managerComponent.GetHealth() > 1.0f)
+		{
+			MovEnemyComp.DeactiveBulletEnemy(false);
 		}
 
 		if (hitted)
@@ -128,5 +136,11 @@ public class Enemy : MonoBehaviour
 
         }
 
+        // Update the layer of the enemy
+        float maxY = 6f;
+        float minY = -4f;
+        float dimY = maxY - minY;
+
+        SpriteComponent.sortingOrder = (int)(100f - ((transform.position.y - minY) / dimY) * 100f);
     }
 }
