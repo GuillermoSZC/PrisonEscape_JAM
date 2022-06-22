@@ -14,28 +14,34 @@ public class Enemy : MonoBehaviour
     public Sprite bang;
 
     float timehitted = 0;
+    private GameManager managerComponent;
 
 
 
     MovimientoEnemigo MovEnemyComp;
     SpriteRenderer SpriteComponent;
+    Animator animatorComponent;
+    ParticleSystem particleComponent;
 
 
     void EndTimerHitted()
     {
         gameObject.SetActive(false);
-      
     }
 
 
     void OnHit()
     {
-        hitted = true;
-        gameObject.GetComponentInChildren<SpriteRenderer>().sprite = bang;
-        MovEnemyComp.StopMoving();
-        managerComponent.addScore(1);
-        gamehealth = Health;
-
+        if (!hitted)
+        {
+            hitted = true;
+            gameObject.GetComponentInChildren<SpriteRenderer>().sprite = bang;
+            MovEnemyComp.ResetEnemy();
+            particleComponent.Stop();
+            animatorComponent.enabled = false;
+            managerComponent.addScore(1);
+            gamehealth = Health;
+        }
     }
 
 
@@ -67,20 +73,25 @@ public class Enemy : MonoBehaviour
             MovEnemyComp.enemyType = (EnemyType)typeOfEnemy;
             SpriteComponent.sprite = enemySprites[typeOfEnemy];
         }
+        hitted = false;
+        particleComponent.Play();
+        animatorComponent.enabled = true;
+    }
+
+    private void Awake()
+    {
+        MovEnemyComp = gameObject.AddComponent<MovimientoEnemigo>();
+        SpriteComponent = gameObject.GetComponentInChildren<SpriteRenderer>();
+        animatorComponent = gameObject.GetComponent<Animator>();
+        particleComponent = gameObject.GetComponentInChildren<ParticleSystem>();
 
     }
 
 
 
-
-    private GameManager managerComponent;
-
     void Start()
     {
         managerComponent = FindObjectOfType<GameManager>();
-        MovEnemyComp = gameObject.AddComponent<MovimientoEnemigo>();
-        SpriteComponent = gameObject.GetComponentInChildren<SpriteRenderer>();
-
     }
 
 
@@ -98,6 +109,17 @@ public class Enemy : MonoBehaviour
             }
         }
 
+        if (transform.position.x <= -7.0f)
+        {
+            managerComponent.damage(1);
+        }
+
+        if (transform.position.x <= -10.0f)
+        {
+            gameObject.SetActive(false);
+            MovEnemyComp.ResetEnemy();
+
+        }
 
 
 

@@ -19,7 +19,7 @@ public class LightSpot : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        EnemyLife comp = other.GetComponent<EnemyLife>();
+        Enemy comp = other.GetComponent<Enemy>();
         if (comp)
         {
             comp.OnSpotLight(1);
