@@ -34,19 +34,17 @@ public class GameManager : MonoBehaviour
         switch (health)
         {
             case 0:
+                liveBullets[0].enabled = false;
                 Time.timeScale = 0;
                 GameOverMenu.SetActive(true);
                 break;
             case 1:
-                liveBullets[0].enabled = false;
-                break;
-            case 2:
                 liveBullets[1].enabled = false;
                 break;
-            case 3:
+            case 2:
                 liveBullets[2].enabled = false;
                 break;
-            case 4:
+            case 3:
                 liveBullets[3].enabled = false;
                 break;
             default:
@@ -72,7 +70,7 @@ public class GameManager : MonoBehaviour
         GameOverMenu.SetActive(false);
         transitionBegin.SetActive(true);
         //transitionEnd.SetActive(false);
-        health = 5;
+        health = 4;
 
         for (int i = 0; i < liveBullets.Length - 1; ++i)
         {

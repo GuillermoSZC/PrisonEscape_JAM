@@ -766,8 +766,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf5add64b1f0bb4a8904bb8453f1358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 1
-  minDelay: 0.2
+  delay: 2
+  minDelay: -200
   enemySprites:
   - {fileID: 3888678161577675459, guid: 7607311022bbb62479af6fed333e9587, type: 3}
   - {fileID: 2919968945315812431, guid: 7607311022bbb62479af6fed333e9587, type: 3}

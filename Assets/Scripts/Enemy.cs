@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public int Health = 1;
     private int gamehealth;
     bool hitted = false;
+    private bool arrived = false;
 
     public Sprite[] enemySprites;
     public Sprite bang;
@@ -76,6 +77,7 @@ public class Enemy : MonoBehaviour
         hitted = false;
         particleComponent.Play();
         animatorComponent.enabled = true;
+        arrived = false;
     }
 
     private void Awake()
@@ -113,10 +115,10 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        if (transform.position.x <= -7.0f && !hitted)
+        if (!arrived && transform.position.x <= -7.0f)
         {
-            managerComponent.damage(1);
-            hitted = true;
+            managerComponent.damage(1);           
+            arrived = true;
         }
 
         if (transform.position.x <= -10.0f)
