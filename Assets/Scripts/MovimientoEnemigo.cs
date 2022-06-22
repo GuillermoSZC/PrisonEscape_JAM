@@ -17,6 +17,7 @@ public class MovimientoEnemigo : MonoBehaviour
 
 	private bool zigzagFlipFlop = false;
 	private bool thirdFlipFlop = false;
+	private bool deactiveBulletEnemy = false;
 	
 	public EnemyType enemyType = EnemyType.NONE;
 
@@ -30,10 +31,8 @@ public class MovimientoEnemigo : MonoBehaviour
     {
 		speed = Random.Range(2.0f, 4.0f);
 		accel = initaccel;
+		deactiveBulletEnemy = false;
     }
-
-	
-
 
     // Update is called once per frame
     void Update()
@@ -41,6 +40,10 @@ public class MovimientoEnemigo : MonoBehaviour
 		EnemyMovement();
 	}
 
+	public void DeactiveBulletEnemy()
+	{
+		deactiveBulletEnemy = true;
+	}
 
 	public void ResetEnemy()
     {
@@ -78,8 +81,15 @@ public class MovimientoEnemigo : MonoBehaviour
 		}
 		else if (enemyType == EnemyType.SKINHEAD)
 		{
-			bulletPrisoner = bulletPrisoner - accel * Time.deltaTime;
-			transform.position = new Vector3(transform.position.x + bulletPrisoner, transform.position.y, transform.position.z);
+			if(!deactiveBulletEnemy)
+			{
+				bulletPrisoner = bulletPrisoner - accel * Time.deltaTime;
+				transform.position = new Vector3(transform.position.x + bulletPrisoner, transform.position.y, transform.position.z);
+			}
+			else
+			{
+				transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+			}
 		}
 		else if (enemyType == EnemyType.NORMALMAN)
 		{
