@@ -17,8 +17,10 @@ public class Enemy : MonoBehaviour
     float timehitted = 0;
     private GameManager managerComponent;
 
+    public AudioSource altavoz;
     public AudioClip[] dieSound;
-    private AudioSource audioComponent;
+   // private AudioSource audioComponent;
+    private AudioClip Sounddieee; 
 
     MovimientoEnemigo MovEnemyComp;
     SpriteRenderer SpriteComponent;
@@ -42,7 +44,12 @@ public class Enemy : MonoBehaviour
             particleComponent.Stop();
             animatorComponent.enabled = false;
             managerComponent.addScore(1);
-            audioComponent.Play();
+//             if(!altavoz.isPlaying)
+// 			{
+                altavoz.clip = Sounddieee;
+                altavoz.Play();
+			//}
+            //audioComponent.Play();
             gamehealth = Health;
         }
     }
@@ -75,7 +82,7 @@ public class Enemy : MonoBehaviour
             int typeOfEnemy = Random.Range(0, enemySprites.Length);
             MovEnemyComp.enemyType = (EnemyType)typeOfEnemy;
             SpriteComponent.sprite = enemySprites[typeOfEnemy];
-            audioComponent.clip = dieSound[typeOfEnemy];
+            Sounddieee = dieSound[typeOfEnemy];
         }
         hitted = false;
         particleComponent.Play();
@@ -89,7 +96,7 @@ public class Enemy : MonoBehaviour
         SpriteComponent = gameObject.GetComponentInChildren<SpriteRenderer>();
         animatorComponent = gameObject.GetComponent<Animator>();
         particleComponent = gameObject.GetComponentInChildren<ParticleSystem>();
-        audioComponent = gameObject.GetComponent<AudioSource>();
+       // audioComponent = gameObject.GetComponent<AudioSource>();
     }
 
 

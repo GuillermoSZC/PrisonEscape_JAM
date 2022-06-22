@@ -21,6 +21,8 @@ public class EnemyGenerator : MonoBehaviour
 
     private float timeToSpawnEnemy = 0f;
 
+    public AudioSource altavozenemy;
+
     void Start()
     {
         timeToSpawnEnemy = delay;
@@ -36,7 +38,7 @@ public class EnemyGenerator : MonoBehaviour
                 GameObject enemy = ObjectPooler.objectPooler.GetPooledObject();
                 if (enemy != null)
 				{
-                    CreateEnemy(enemy);
+                    CreateEnemy(enemy, altavozenemy);
                     if (delay > minDelay)
 					{
                         delay -= 0.1f;
@@ -47,9 +49,9 @@ public class EnemyGenerator : MonoBehaviour
 		}
     }
 
-    bool CreateEnemy(GameObject _enemy)
+    bool CreateEnemy(GameObject _enemy, AudioSource _altavoz)
 	{
-
+        _enemy.GetComponent<Enemy>().altavoz = _altavoz;
 		_enemy.SetActive(true);
 		
         return true;

@@ -22,7 +22,7 @@ public class SpawnSpotLight : MonoBehaviour
         instance_spotLight = Instantiate(prefab_spotLight, initpoint, prefab_spotLight.transform.rotation);
         returnComponent = instance_spotLight.GetComponent<returntoinit>();
         returnComponent.SetInitPos(initpoint);
-        audioSourceComponent = gameObject.GetComponent<AudioSource>();
+        audioSourceComponent = instance_spotLight.GetComponent<AudioSource>();
         managerComponent = GetComponent<GameManager>();
 
     }
@@ -42,7 +42,7 @@ public class SpawnSpotLight : MonoBehaviour
             {
                 instance_spotLight.transform.position = hitData.point;
                 returnComponent.Shoot();
-                audioSourceComponent.Play();
+                audioSourceComponent.Play();              
             }
             //light.transform.position = initpoint;
             /* Instantiate(lightSpotlogic,spawnpoint,lightSpotlogic.transform.rotation);*/
