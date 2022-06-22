@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
         PauseMenu.SetActive(false);
         GameOverMenu.SetActive(false);
         transitionBegin.SetActive(true);
-        //transitionEnd.SetActive(false);
+        transitionEnd.SetActive(false);
         health = 4;
 
         for (int i = 0; i < liveBullets.Length - 1; ++i)

@@ -7,7 +7,14 @@ public class changesceneGameOver : MonoBehaviour
 {
     public void ChangeScene()
     {
-        SceneManager.LoadScene("escenajuego");       
+        if (SceneManager.GetActiveScene().name == "title")
+        {
+            SceneManager.LoadScene("escenajuego");
+        }
+        else
+        {
+            SceneManager.LoadScene("title");
+        }
     }
 
 }
