@@ -109,9 +109,10 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        if (transform.position.x <= -7.0f)
+        if (transform.position.x <= -7.0f && !hitted)
         {
             managerComponent.damage(1);
+            hitted = true;
         }
 
         if (transform.position.x <= -10.0f)
@@ -120,8 +121,6 @@ public class Enemy : MonoBehaviour
             MovEnemyComp.ResetEnemy();
 
         }
-
-
 
     }
 }

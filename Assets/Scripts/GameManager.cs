@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviour
 
     private int score = 0;
 
-    public Image PauseMenu;
-    public Image GameOverMenu;
+    public GameObject PauseMenu;
+    public GameObject GameOverMenu;
     public Text scoreText;
     public Image[] liveBullets;
     public GameObject transitionBegin;
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         {
             case 0:
                 Time.timeScale = 0;
-                GameOverMenu.enabled = true;
+                GameOverMenu.SetActive(true);
                 break;
             case 1:
                 liveBullets[0].enabled = false;
@@ -63,8 +63,8 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         addScore(0);
-        PauseMenu.enabled=false;
-        GameOverMenu.enabled = false;
+        PauseMenu.SetActive(false);
+        GameOverMenu.SetActive(false);
         transitionBegin.SetActive(true);
         //transitionEnd.SetActive(false);
         health = 5;
