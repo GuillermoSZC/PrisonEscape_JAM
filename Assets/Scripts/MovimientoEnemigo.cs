@@ -29,7 +29,7 @@ public class MovimientoEnemigo : MonoBehaviour
 
     private void OnEnable()
     {
-		speed = Random.Range(2.0f, 3.0f);
+		speed = Random.Range(2.0f, 5.0f);
 		accel = initaccel;
 		deactiveBulletEnemy = false;
     }
@@ -71,13 +71,24 @@ public class MovimientoEnemigo : MonoBehaviour
 			if (zigzagFlipFlop)
 			{
 				zigzagCont++;
-				transform.position = new Vector3(transform.position.x - Time.deltaTime * speed, transform.position.y + Time.deltaTime * speed, transform.position.z);
+				Vector3 temp = new Vector3(transform.position.x - Time.deltaTime * speed, transform.position.y + Time.deltaTime * speed, transform.position.z);
+
+				if (temp.y >= 3.24f)
+                {
+					temp.y = 3.24f;
+                }
+				transform.position = temp;
 			}
 			else
 			{
-				zigzagCont--;
-				transform.position = new Vector3(transform.position.x - Time.deltaTime * speed, transform.position.y - Time.deltaTime * speed, transform.position.z);
-			}
+                zigzagCont--;
+                Vector3 temp = new Vector3(transform.position.x - Time.deltaTime * speed, transform.position.y - Time.deltaTime * speed, transform.position.z);
+                if (temp.y <= -3.07f)
+                {
+                    temp.y = -3.07f;
+                }
+                transform.position = temp;
+            }
 		}
 		else if (enemyType == EnemyType.SKINHEAD)
 		{
@@ -106,7 +117,12 @@ public class MovimientoEnemigo : MonoBehaviour
 			if(thirdFlipFlop && thirdMovement <= 200.0f)
 			{
 				thirdMovement++;
-				transform.position = new Vector3(transform.position.x - Time.deltaTime * speed, transform.position.y + Time.deltaTime * speed, transform.position.z);
+				Vector3 temp = new Vector3(transform.position.x - Time.deltaTime * speed, transform.position.y + Time.deltaTime * speed, transform.position.z);
+                if (temp.y >= 3.24f)
+                {
+                    temp.y = 3.24f;
+                }
+                transform.position = temp;
 			}
 			else if(thirdFlipFlop)
 			{
