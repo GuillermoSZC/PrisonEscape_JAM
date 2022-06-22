@@ -35,6 +35,8 @@ public class SpawnSpotLight : MonoBehaviour
            
             cadencia = cadenciafoco;
             Vector3 screenPos = Input.mousePosition;
+            screenPos.x += 32;
+            screenPos.y -= 32;
             Ray ray = Camera.main.ScreenPointToRay(screenPos);
             if (Physics.Raycast(ray, out RaycastHit hitData))
             {

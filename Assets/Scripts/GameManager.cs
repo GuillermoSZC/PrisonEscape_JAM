@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public Image[] liveBullets;
     public GameObject transitionBegin;
     public GameObject transitionEnd;
+    public GameObject alarmobject;
 
 
     public bool GetPaused()
@@ -36,8 +37,9 @@ public class GameManager : MonoBehaviour
 
     public void damage(int _damage)
     {
-        health -= _damage;
 
+        health -= _damage;
+        alarmobject.SetActive(true);
         switch (health)
         {
             case 0:
@@ -77,6 +79,7 @@ public class GameManager : MonoBehaviour
         PauseMenu.SetActive(false);
         GameOverMenu.SetActive(false);
         transitionBegin.SetActive(true);
+
         //transitionEnd.SetActive(false);
         health = 4;
 

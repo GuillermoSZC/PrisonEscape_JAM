@@ -843,6 +843,7 @@ MonoBehaviour:
   - {fileID: 2055364138}
   transitionBegin: {fileID: 580971672}
   transitionEnd: {fileID: 218105845}
+  alarmobject: {fileID: 1273971155}
 --- !u!82 &427718870
 AudioSource:
   m_ObjectHideFlags: 0
