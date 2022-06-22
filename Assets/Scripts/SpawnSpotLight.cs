@@ -22,7 +22,7 @@ public class SpawnSpotLight : MonoBehaviour
         instance_spotLight = Instantiate(prefab_spotLight, initpoint, prefab_spotLight.transform.rotation);
         returnComponent = instance_spotLight.GetComponent<returntoinit>();
         returnComponent.SetInitPos(initpoint);
-        audioSourceComponent = GetComponent<AudioSource>();
+        audioSourceComponent = gameObject.GetComponent<AudioSource>();
         managerComponent = GetComponent<GameManager>();
 
     }
@@ -35,8 +35,8 @@ public class SpawnSpotLight : MonoBehaviour
            
             cadencia = cadenciafoco;
             Vector3 screenPos = Input.mousePosition;
-            screenPos.x += 32;
-            screenPos.y -= 32;
+            screenPos.x += 32.5f;
+            screenPos.y -= 32.0f;
             Ray ray = Camera.main.ScreenPointToRay(screenPos);
             if (Physics.Raycast(ray, out RaycastHit hitData))
             {
